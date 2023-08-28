@@ -1,13 +1,17 @@
 <app-global-error></app-global-error>
-
+<app-modal
+  title="Create new product"
+  *ngIf="modalService.isVisible$ | async">
+  <app-create-product></app-create-product>
+</app-modal>
 <div class="max-w-2xl container mx-auto pt-5">
   <h1 class="font-bold mb-2 text-center text-lg"> {{title | titlecase}}</h1>
 
   <input
-  type="text"
-  class="mb-2 border px-4 py-2 w-full"
-  placeholder="Filter products..."
-  [(ngModel)]="term">
+    type="text"
+    class="mb-2 border px-4 py-2 w-full"
+    placeholder="Filter products..."
+    [(ngModel)]="term">
 
   <p
     *ngIf="loading"
@@ -18,6 +22,10 @@
                  [product]="product">
     </app-product>
   </div>
-
+  <button
+   class="rounded-full bg-red-700 text-white fixed right-5 bottom-5 py-2 px-4"
+  (click)="modalService.open()">
++
+  </button>
 
 </div>
